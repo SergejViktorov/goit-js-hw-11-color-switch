@@ -19,6 +19,10 @@ btn.addEventListener('click', onStart)
 btnClose.addEventListener('click', onClose)
 
 function onStart() {
+	if (intervalId !== null) {
+		return
+	}
+
 	intervalId = setInterval(() => onRundomColor(), NOTIFICATION_DELAY)
 	btn.setAttribute('disabled', 'disabled')
 }
@@ -31,6 +35,7 @@ function onRundomColor() {
 function onClose() {
 	clearInterval(intervalId)
 	btn.removeAttribute('disabled')
+	intervalId = null
 }
 
 const randomIntegerFromInterval = (min, max) => {
